@@ -1,4 +1,4 @@
-﻿# Chatbot Flow Diagram (Slide Ready)
+# Chatbot Flow Diagram (Slide Ready)
 
 เอกสารนี้ทำสำหรับใส่สไลด์ โดยมี 2 เวอร์ชัน:
 - Business Flow (เข้าใจง่าย)
@@ -11,23 +11,23 @@
 ### Mermaid
 ```mermaid
 flowchart TD
-  A[ผู้ใช้พิมพ์คำถาม\nUser Question] --> B[Frontend Chat UI\nChatContainer]
-  B --> C[ส่งคำถามไป Backend\nPOST /chatbot/ask หรือ /chatbot/ask/stream]
-  C --> D[วิเคราะห์คำถาม\nIntent + Security Check]
+  A[ผู้ใช้พิมพ์คำถาม<br/>User Question] --> B[Frontend Chat UI<br/>ChatContainer]
+  B --> C[ส่งคำถามไป Backend<br/>POST /chatbot/ask หรือ /chatbot/ask/stream]
+  C --> D[วิเคราะห์คำถาม<br/>Intent and Security Check]
 
-  D --> E{เลือกเส้นทางตอบ\nResponse Path}
-  E --> F[Small Talk\nตอบบทสนทนาทั่วไป]
-  E --> G[Live Data/API\nข้อมูลสด เช่น ห้องว่าง/ข้อมูลล่าสุด]
-  E --> H[Knowledge Base (RAG)\nค้นความรู้ + สร้างคำตอบ]
+  D --> E{เลือกเส้นทางตอบ<br/>Response Path}
+  E --> F[Small Talk<br/>ตอบบทสนทนาทั่วไป]
+  E --> G[Live Data API<br/>ข้อมูลสด เช่น ห้องว่างและข้อมูลล่าสุด]
+  E --> H[Knowledge Base RAG<br/>ค้นความรู้และสร้างคำตอบ]
 
-  F --> I[สร้างคำตอบ\nGenerate Reply]
+  F --> I[สร้างคำตอบ<br/>Generate Reply]
   G --> I
   H --> I
 
-  I --> J[ส่งคำตอบกลับ UI\nReply + Source + Updated_at]
-  J --> K[บันทึกประวัติ\nConversation Log / Analytics]
+  I --> J[ส่งคำตอบกลับ UI<br/>Reply Source Updated_at]
+  J --> K[บันทึกประวัติ<br/>Conversation Log and Analytics]
 
-  L[Fallback\nตอบข้อความสำรองเมื่อผิดพลาด/ไม่ผ่านเงื่อนไข] --> J
+  L[Fallback<br/>ตอบข้อความสำรองเมื่อผิดพลาดหรือไม่ผ่านเงื่อนไข] --> J
   D -. fail/safe .-> L
   H -. validation fail .-> L
 ```
